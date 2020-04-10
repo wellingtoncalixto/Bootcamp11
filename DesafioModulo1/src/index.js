@@ -27,7 +27,7 @@ function isValaidId(request, response, next) {
   return next();
 }
 
-api.use('/repositorie/:id', isValaidId)
+api.use('/repositories/:id', isValaidId)
 
 
 api.get('/repositories', (request, response) => {
@@ -37,24 +37,24 @@ api.get('/repositories', (request, response) => {
 api.post('/repositories', (request, response) => {
   const {title, url, techs} = request.body
 
-  const repositorie = {id: uuid(), title, url, techs, likes: 0}
+  const repository = {id: uuid(), title, url, techs, likes: 0}
   
-  repositories.push(repositorie)
+  repositories.push(repository)
 
-  return response.json(repositorie)
+  return response.json(repository)
 })
 
 api.put('/repositories/:id', (request, response) => {
   const {id} = request.params;
   let {title, url, techs} = request.body;
 
-  const repositoriIndex = repositories.findIndex(repositorie => repositorie.id === id)
+  const repositoryIndex = repositories.findIndex(repository => repository.id === id)
 
-  if(repositoriIndex < 0) {
-    return response.status(400).json({mensage: 'repositorie not found'})
+  if(repositoryIndex < 0) {
+    return response.status(400).json({mensage: 'repository not found'})
   }
 
-  const old = repositories[repositoriIndex]
+  const old = repositories[repositoryIndex]
   
   if (!title) {
     title = old.title
@@ -68,7 +68,7 @@ api.put('/repositories/:id', (request, response) => {
     techs = old.techs
   }
 
-  const repositorie = {
+  const repository = {
     id,
     title,
     url,
@@ -76,22 +76,22 @@ api.put('/repositories/:id', (request, response) => {
     likes: old.likes
   }
 
-  repositories[repositoriIndex] = repositorie
+  repositories[repositoryIndex] = repository
 
-  return response.json(repositorie)
+  return response.json(repository)
 })
 
 
 api.delete('/repositories/:id', (request, response) => {
   const {id} = request.params;
 
-  const repositoriIndex = repositories.findIndex(repositorie => repositorie.id === id)
+  const repositoryIndex = repositories.findIndex(repository => repository.id === id)
 
-  if(repositoriIndex < 0) {
-    return response.status(400).json({mensage: 'repositorie not found'})
+  if(repositoryIndex < 0) {
+    return response.status(400).json({mensage: 'repository not found'})
   }
 
- repositories.splice(repositoriIndex, 1)
+ repositories.splice(repositoryIndex, 1)
 
   return response.status(204).send()
 })
@@ -99,17 +99,17 @@ api.delete('/repositories/:id', (request, response) => {
 api.post('/repositories/:id/like', isValaidId, (request, response) => {
   const {id} = request.params;
 
-  const repositoriIndex = repositories.findIndex(repositorie => repositorie.id === id)
+  const repositoryIndex = repositories.findIndex(repository => repository.id === id)
 
-  if(repositoriIndex < 0) {
-    return response.status(400).json({mensage: 'repositorie not found'})
+  if(repositoryIndex < 0) {
+    return response.status(400).json({mensage: 'repository not found'})
   }
 
-  repositories[repositoriIndex].likes++
+  repositories[repositoryIndex].likes++
 
-  const repositorie = repositories[repositoriIndex]
+  const repository = repositories[repositoryIndex]
 
-  return response.json(repositorie)
+  return response.json(repository)
 })
 
 
