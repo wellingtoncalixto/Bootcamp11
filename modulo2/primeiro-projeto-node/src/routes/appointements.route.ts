@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { startOfHour, parseISO } from 'date-fns';
-import AppointmentRepository from '../repositories/AppointementsRepository';
+import AppointmentRepository from '../repositories/AppointmentsRepository';
 
 const appointementsRouter = Router();
 const appointementsRepository = new AppointmentRepository();
