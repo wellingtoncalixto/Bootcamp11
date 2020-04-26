@@ -1,9 +1,13 @@
 import { Router } from 'express';
 
-import appointementsRouter from './appointements.route';
+import appointementsRouter from './appointments.route';
+import usersRouter from './users.route';
+import sessionsRouter from './sessions.route';
 
 const routes = Router();
 
-routes.use('/appointements', appointementsRouter);
+routes.use('/appointments', appointementsRouter);
+routes.use('/users', usersRouter);
+routes.use('/sessions', sessionsRouter);
 
 export default routes;
