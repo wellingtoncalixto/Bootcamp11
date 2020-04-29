@@ -21,6 +21,7 @@ export default class AlterAppointmentsProviderToProviderId1587776418973
     await queryRunner.createForeignKey(
       'appointments',
       new TableForeignKey({
+        name: 'AppointmentProvider',
         columnNames: ['provider_id'],
         referencedColumnNames: ['id'],
         referencedTableName: 'users',
