@@ -21,6 +21,7 @@ export const ToastProvider: React.FC = ({ children }) => {
 
   const addToast = useCallback(
     ({ type, title, description }: Omit<ToastMessage, 'id'>) => {
+      console.log('aqui');
       const id = uuid();
 
       const toast = {
@@ -30,9 +31,9 @@ export const ToastProvider: React.FC = ({ children }) => {
         description,
       };
 
-      setMessages([...messages, toast]);
+      setMessages((state) => [...state, toast]);
     },
-    [messages],
+    [],
   );
 
   const removeToast = useCallback((id: string) => {
