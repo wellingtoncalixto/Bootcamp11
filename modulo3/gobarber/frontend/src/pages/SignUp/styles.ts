@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import background from '../../assets/sign-up-background.png';
-import {shade} from 'polished'
+import { shade } from 'polished';
 export const Container = styled.div`
   display: flex;
   height: 100vh;
@@ -8,11 +8,10 @@ export const Container = styled.div`
 `;
 
 export const Left = styled.section`
-    flex: 1;
+  flex: 1;
   background: url(${background}) no-repeat center;
   background-size: cover;
 `;
-
 
 export const Button = styled.button``;
 
@@ -25,7 +24,26 @@ export const Right = styled.div`
 
   width: 100%;
   max-width: 800px;
+`;
 
+const appearFromRight = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(50px)
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px)
+  }
+`;
+
+export const AnimationContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  place-content: center;
+
+  animation: ${appearFromRight} 1s;
   form {
     display: flex;
     flex-direction: column;
@@ -38,17 +56,16 @@ export const Right = styled.div`
     }
 
     a {
-        color: #f4ede8;
-        display: block;
-        margin-top: 24px;
-        text-decoration: none;
-        transition: color 0.2s;
+      color: #f4ede8;
+      display: block;
+      margin-top: 24px;
+      text-decoration: none;
+      transition: color 0.2s;
 
-        :hover {
-        color: ${shade(0.2, "#f4ede8")}
-        }
-
+      :hover {
+        color: ${shade(0.2, '#f4ede8')};
       }
+    }
   }
 
   > a {
@@ -62,12 +79,11 @@ export const Right = styled.div`
     align-items: center;
 
     :hover {
-    color: ${shade(0.2, "#f4ede8")}
+      color: ${shade(0.2, '#f4ede8')};
     }
 
     svg {
       margin-right: 16px;
     }
   }
-
 `;
